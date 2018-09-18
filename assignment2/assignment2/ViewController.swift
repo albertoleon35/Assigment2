@@ -19,29 +19,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var colorRectangle: UIView!
     
     @IBAction func coloButton(_ sender: Any) {
-        if  let redTextBoxValue = Int(redTextBox.text!),
-            let greenTextBoxValue = Int(greenTextBox.text!),
-            let blueTextBoxValue = Int(blueTextBox.text!) {
-            
-            let colors = Colors(redColor: redTextBoxValue, greenColor: greenTextBoxValue, blueColor: blueTextBoxValue)
-            if (colors.isColorRangeValid()) {
-                colorRectangle.backgroundColor = getColor(red: colors.getRedColor(), green: colors.getGreenColor(), blue: colors.getBlueColor())
-            }
-            else {
-                colorRectangle.backgroundColor = .white;
+        if  let redTextBoxValue = redTextBox.text, let greenTextBoxValue = greenTextBox.text, let blueTextBoxValue = blueTextBox.text {
+                if let redNumber = Int(redTextBoxValue), let greenNumber = Int(greenTextBoxValue), let blueNumber = Int(blueTextBoxValue) {
+                    let colors = Colors(redColor: redNumber, greenColor: greenNumber, blueColor: blueNumber)
+                    if (colors.isColorRangeValid()) {
+                        colorRectangle.backgroundColor = colors.getColor();
+                        colorRectangle.setNeedsDisplay();
+                }
             }
         }
+        else {
+            colorRectangle.backgroundColor = .white;
+            colorRectangle.setNeedsDisplay();
+        }
+        self.view.endEditing(true);
     }
     
-    func getColor(red: Int, green: Int, blue: Int) -> UIColor {
-        //Generate between 0 to 1
-        let red:CGFloat = CGFloat(red)
-        let green:CGFloat = CGFloat(green)
-        let blue:CGFloat = CGFloat(blue)
-        
-        return UIColor(red:red, green: green, blue: blue, alpha: 1.0)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

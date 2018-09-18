@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public struct Colors  {
     private let colorRequirement : Int = 100;
@@ -36,5 +37,17 @@ public struct Colors  {
     
     public func getBlueColor() -> Int {
         return self.blueColorNumber;
+    }
+
+    public func getColor() -> UIColor {
+        let red:CGFloat = CGFloat(getRgbColor(color: self.redColorNumber) / 255);
+        let green:CGFloat = CGFloat(getRgbColor(color: self.greenColorNumber) / 255);
+        let blue:CGFloat = CGFloat(getRgbColor(color: self.blueColorNumber) / 255);
+        
+        return UIColor(red:red, green: green, blue: blue, alpha: 1.0);
+    }
+    
+    private func getRgbColor(color: Int) -> Double {
+        return Double(color) * 2.55;
     }
 }
