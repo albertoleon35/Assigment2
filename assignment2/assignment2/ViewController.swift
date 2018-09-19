@@ -10,38 +10,66 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var redLabel: UILabel!
-    @IBOutlet weak var greenLabel: UILabel!
-    @IBOutlet weak var blueLabel: UILabel!
-    @IBOutlet weak var redTextBox: UITextField!
-    @IBOutlet weak var greenTextBox: UITextField!
-    @IBOutlet weak var blueTextBox: UITextField!
+    let redNumberKey : String = "redNumber";
+    let greenNumberKey : String = "greenNumber";
+    let blueNumberKey : String = "blueNumber";
+    var userDefaults : UserDefaults?;
+    
+    @IBOutlet weak var redLabel: UILabel!;
+    @IBOutlet weak var greenLabel: UILabel!;
+    @IBOutlet weak var blueLabel: UILabel!;
+    @IBOutlet weak var redTextBox: UITextField!;
+    @IBOutlet weak var greenTextBox: UITextField!;
+    @IBOutlet weak var blueTextBox: UITextField!;
     @IBOutlet weak var colorRectangle: UIView!
     
     @IBAction func coloButton(_ sender: Any) {
-        if  let redTextBoxValue = redTextBox.text, let greenTextBoxValue = greenTextBox.text, let blueTextBoxValue = blueTextBox.text {
-                if let redNumber = Int(redTextBoxValue), let greenNumber = Int(greenTextBoxValue), let blueNumber = Int(blueTextBoxValue) {
-                    let colors = Colors(redColor: redNumber, greenColor: greenNumber, blueColor: blueNumber)
-                    if (colors.isColorRangeValid()) {
-                        colorRectangle.backgroundColor = colors.getColor();
-                        colorRectangle.setNeedsDisplay();
-                }
-            }
+        
+        guard let redTextBoxValue = redTextBox.text, let greenTextBoxValue = greenTextBox.text, let blueTextBoxValue = blueTextBox.text else {
+            return;
         }
-        else {
+        guard let redNumber = Int(redTextBoxValue), let greenNumber = Int(greenTextBoxValue), let blueNumber = Int(blueTextBoxValue) else {
+            return;
+        }
+        
+        let colors = Colors(redColor: redNumber, greenColor: greenNumber, blueColor: blueNumber)
+    
+        guard colors.isColorRangeValid() else {
             colorRectangle.backgroundColor = .white;
-            colorRectangle.setNeedsDisplay();
+            return;
         }
+        
+        self.persistColors(colors: colors);
+        colorRectangle.backgroundColor = colors.getColor();
         self.view.endEditing(true);
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.userDefaults = UserDefaults();
+        self.setTextBoxesText();
+    
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    fileprivate func persistColors(colors: Colors) {
+        self.userDefaults?.set(colors.getRedColor(), forKey: redNumberKey);
+        self.userDefaults?.set(colors.getGreenColor(), forKey: greenNumberKey);
+        self.userDefaults?.set(colors.getBlueColor(), forKey: blueNumberKey);
+    }
+    
+    fileprivate func setTextBoxesText() {
+        if let redNumber = self.userDefaults?.integer(forKey: redNumberKey) {
+            redTextBox.text = "\(redNumber)";
+        }
+        if let greenNumber = self.userDefaults?.integer(forKey: greenNumberKey) {
+            greenTextBox.text = "\(greenNumber)";
+        }
+        if let blueNumber = self.userDefaults?.integer(forKey: blueNumberKey) {
+            blueTextBox.text = "\(blueNumber)"
+        }
     }
 }
