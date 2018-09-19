@@ -23,6 +23,29 @@ class ViewController: UIViewController {
     @IBOutlet weak var blueTextBox: UITextField!;
     @IBOutlet weak var colorRectangle: UIView!
     
+    
+    @IBAction func finishedEditingGreenTextBox(_ sender: Any) {
+        guard let greenTextBoxValue = greenTextBox.text else {
+            return;
+        }
+        self.userDefaults?.set(greenTextBoxValue, forKey: greenNumberKey);
+    }
+    
+    
+    @IBAction func finishedEditingRedTextBox(_ sender: Any) {
+        guard let redTextBoxValue = redTextBox.text else {
+            return;
+        }
+        self.userDefaults?.set(redTextBoxValue, forKey: redNumberKey);
+    }
+    
+    @IBAction func finishedEditingBlueTextBox(_ sender: Any) {
+        guard let blueTextBoxValue = blueTextBox.text else {
+            return;
+        }
+        self.userDefaults?.set(blueTextBoxValue, forKey: blueNumberKey)
+    }
+    
     @IBAction func coloButton(_ sender: Any) {
         
         guard let redTextBoxValue = redTextBox.text, let greenTextBoxValue = greenTextBox.text, let blueTextBoxValue = blueTextBox.text else {
@@ -40,7 +63,7 @@ class ViewController: UIViewController {
         }
         
         self.persistColors(colors: colors);
-        colorRectangle.backgroundColor = colors.getColor();
+        colorRectangle.backgroundColor = colors.getBackgroundColor();
         self.view.endEditing(true);
     }
     
@@ -62,6 +85,7 @@ class ViewController: UIViewController {
     }
     
     fileprivate func setTextBoxesText() {
+        
         if let redNumber = self.userDefaults?.integer(forKey: redNumberKey) {
             redTextBox.text = "\(redNumber)";
         }

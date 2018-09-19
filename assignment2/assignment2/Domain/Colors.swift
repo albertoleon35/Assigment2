@@ -21,10 +21,16 @@ public struct Colors  {
         self.blueColorNumber = blueColor;
     }
     
+    init(redColor: Int) {
+        self.redColorNumber = redColor;
+        self.greenColorNumber = 0;
+        self.blueColorNumber = 0;
+    }
+    
     func isColorRangeValid() -> Bool {
-        return  self.redColorNumber <= colorRequirement &&
-                self.greenColorNumber <= colorRequirement &&
-                self.blueColorNumber <= colorRequirement;
+        return  (self.redColorNumber <= colorRequirement && self.redColorNumber > 0) &&
+                (self.greenColorNumber <= colorRequirement && self.greenColorNumber > 0) &&
+                (self.blueColorNumber <= colorRequirement && self.blueColorNumber > 0);
     }
     
     public func getRedColor() -> Int {
@@ -39,7 +45,7 @@ public struct Colors  {
         return self.blueColorNumber;
     }
 
-    public func getColor() -> UIColor {
+    public func getBackgroundColor() -> UIColor {
         let red:CGFloat = CGFloat(getRgbColor(color: self.redColorNumber) / 255);
         let green:CGFloat = CGFloat(getRgbColor(color: self.greenColorNumber) / 255);
         let blue:CGFloat = CGFloat(getRgbColor(color: self.blueColorNumber) / 255);
