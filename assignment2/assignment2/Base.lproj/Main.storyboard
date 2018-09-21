@@ -49,9 +49,6 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="finishedEditingRedTextBox:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="CoD-lf-NwZ"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="greenButton" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rmA-dJ-DGU">
                                 <rect key="frame" x="82" y="105" width="97" height="30"/>
@@ -60,9 +57,6 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="finishedEditingGreenTextBox:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="HbE-kV-xBK"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="plj-6Q-iCr">
                                 <rect key="frame" x="82" y="162" width="97" height="30"/>
@@ -71,9 +65,6 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="finishedEditingBlueTextBox:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="eqA-mc-Ltd"/>
-                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="colorButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NvG-Zi-oly">
                                 <rect key="frame" x="231" y="105" width="97" height="30"/>
@@ -82,7 +73,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Color"/>
                                 <connections>
-                                    <action selector="coloButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oXA-rs-HE6"/>
+                                    <action selector="colorButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oXA-rs-HE6"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qkt-98-SSE">
