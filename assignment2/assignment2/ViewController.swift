@@ -30,10 +30,12 @@ class ViewController: UIViewController {
         
         guard let redTextBoxValue = redTextBox.text, let greenTextBoxValue = greenTextBox.text, let blueTextBoxValue = blueTextBox.text  else {
             self.view.endEditing(true);
+            colorRectangle.backgroundColor = .white;
             return;
         }
         guard let redNumber = Int(redTextBoxValue), let greenNumber = Int(greenTextBoxValue), let blueNumber = Int(blueTextBoxValue) else {
             self.view.endEditing(true);
+            colorRectangle.backgroundColor = .white;
             return;
         }
         
